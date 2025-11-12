@@ -1,0 +1,8 @@
+fork
+    include unistd
+    create a child process and execute it at the same time as the main one
+    give back an "int id" 
+        id = 0 --> child process
+        id = n --> main process;
+wait 
+    
