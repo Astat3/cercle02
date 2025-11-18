@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 13:47:44 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/18 11:29:09 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/11/18 11:49:48 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 /*recuperer la bonne ligne -> puis trouver le dir qui contient la commande*/
 
 /*./pipex infilea "ls -l" "wc -l" outfile*/
-
-
 
 int	get_file(char *file_name, int instruction)
 {
