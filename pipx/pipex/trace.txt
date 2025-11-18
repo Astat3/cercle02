@@ -1,0 +1,29 @@
+BREAKING TEST CASE FOUND
+========================
+
+Command that broke the code:
+./pipex test_input.txt "/bin/cat" "wc -l" output_abs.txt
+
+Shell equivalent:
+< test_input.txt /bin/cat | wc -l
+
+PIPEX OUTPUT:
+Command not found: No such file or directory
+       0
+
+SHELL OUTPUT:
+       1
+
+EXPLANATION:
+The pipex program fails to handle absolute path commands (like /bin/cat).
+The find_var() function only searches in PATH directories and doesn't check
+if the command itself is already an absolute path that exists.
+
+When the shell executes "< test_input.txt /bin/cat | wc -l", it correctly
+uses /bin/cat as an absolute path and outputs "1" (one line counted).
+
+When pipex executes the same command, it tries to find "/bin/cat" in the
+PATH directories instead of checking if it's already a valid absolute path,
+resulting in "Command not found" error and incorrect output of "0".
+
+This breaks the requirement to reproduce the behavior of the pipe in terminal.

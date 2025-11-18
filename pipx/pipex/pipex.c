@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 13:47:44 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/18 11:49:48 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/11/18 14:52:39 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,28 @@
 /*recuperer la bonne ligne -> puis trouver le dir qui contient la commande*/
 
 /*./pipex infilea "ls -l" "wc -l" outfile*/
+
+void	ft_exe(char *cmd, char **path)
+{
+	char **t_cmd;
+	char *var;
+
+	t_cmd = ft_split(cmd, ' ');
+	var = find_var(cmd, path);// trouve le dir de la commande
+	if (var == NULL)
+	{
+		perror("Command not found");
+		full_free(t_cmd);
+		exit(127);
+	}
+	if (execve(var, t_cmd, path) == -1)
+	{
+		perror("Execve failed");
+		full_free(t_cmd);
+		free(var);
+		exit(1);
+	}
+}	
 
 int	get_file(char *file_name, int instruction)
 {
@@ -32,7 +54,7 @@ int	get_file(char *file_name, int instruction)
 	{
 		fd = open(file_name, O_RDONLY, 0777);
 	}
-	if (instruction == -1)
+	if (fd == -1)
 	{
 		code_exit(2);
 	}
@@ -45,10 +67,12 @@ void	child_process(char **av, int *fd, char **path)
 	
 	fd_child = get_file(av[1], READ);
 	// change 3 avec STDIN -> recupère input
-	dup2(fd_child, READ); 
+	dup2(fd_child, STDIN_FILENO); 
 	close(fd_child);
 	// renvoi l'output dans le Pip au lieu du STDOUT
-	dup2(fd[WRITE], WRITE);
+	dup2(fd[WRITE], STDOUT_FILENO);
+	close(fd[READ]);
+	close(fd[WRITE]);
 	ft_exe(av[2], path);
 }
 
@@ -59,9 +83,11 @@ void	parent_process(char **av, int *fd, char **path)
 	int fd_parent;
 
 	fd_parent = get_file(av[4], WRITE);
-	dup2(fd_parent, WRITE);
-	dup2(fd[READ], READ);
+	dup2(fd_parent, STDOUT_FILENO);
+	dup2(fd[READ], STDIN_FILENO);
 	close(fd_parent);
+	close(fd[READ]);
+	close(fd[WRITE]);
 	ft_exe(av[3], path);
 }
 
