@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 11:28:37 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/18 15:42:13 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/11/22 19:14:01 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,10 @@ char	*find_var(char *cmd, char **path) // rend arg1 de excve
 	line = NULL;
 	var = NULL;
 	t_cmd = ft_split(cmd, ' ');
-    if (access(cmd, F_OK | X_OK) == 0)
-    {
-        return cmd;        
-    }
+	if (access(cmd, F_OK | X_OK) == 0)
+	{
+		return cmd;
+	}
 	i = 0;
 	while (l_path[i])
 	{

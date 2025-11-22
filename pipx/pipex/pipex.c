@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 13:47:44 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/18 14:52:39 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/11/22 22:06:07 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,8 @@ int main(int ac, char **av, char **path)
 	pid_t pid;
 
 //verif des arguments;
-	if (ac != 5)
+    printf("ceci est un test du clavier qui semble parfaitment fonctionner");
+    if (ac != 5)
 		code_exit(0);
 	if (pipe(fd) == -1)
 		code_exit(1);
@@ -109,5 +110,5 @@ int main(int ac, char **av, char **path)
 	{
 		parent_process(av,fd, path);
 	}
-	return 0;
+    return 0;
 }
