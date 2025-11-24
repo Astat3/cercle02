@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
+/*   By: agallot <agallot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 13:47:44 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/22 22:06:07 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/11/24 11:33:54 by agallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-# define READ 0
-# define WRITE 1
+#define READ 0
+#define WRITE 1
 
 /*recuperer la bonne ligne -> puis trouver le dir qui contient la commande*/
 
@@ -21,11 +21,11 @@
 
 void	ft_exe(char *cmd, char **path)
 {
-	char **t_cmd;
-	char *var;
+	char	**t_cmd;
+	char	*var;
 
 	t_cmd = ft_split(cmd, ' ');
-	var = find_var(cmd, path);// trouve le dir de la commande
+	var = find_var(cmd, path);
 	if (var == NULL)
 	{
 		perror("Command not found");
@@ -43,7 +43,7 @@ void	ft_exe(char *cmd, char **path)
 
 int	get_file(char *file_name, int instruction)
 {
-	int fd;
+	int	fd;
 
 	fd = 0;
 	if (instruction == WRITE)
@@ -63,13 +63,11 @@ int	get_file(char *file_name, int instruction)
 
 void	child_process(char **av, int *fd, char **path)
 {
-	int fd_child;
-	
+	int	fd_child;
+
 	fd_child = get_file(av[1], READ);
-	// change 3 avec STDIN -> recupère input
-	dup2(fd_child, STDIN_FILENO); 
+	dup2(fd_child, STDIN_FILENO);
 	close(fd_child);
-	// renvoi l'output dans le Pip au lieu du STDOUT
 	dup2(fd[WRITE], STDOUT_FILENO);
 	close(fd[READ]);
 	close(fd[WRITE]);
@@ -80,7 +78,7 @@ void	child_process(char **av, int *fd, char **path)
 /*< infile.txt ls -l | wc -l outfile*/
 void	parent_process(char **av, int *fd, char **path)
 {
-	int fd_parent;
+	int	fd_parent;
 
 	fd_parent = get_file(av[4], WRITE);
 	dup2(fd_parent, STDOUT_FILENO);
@@ -91,24 +89,21 @@ void	parent_process(char **av, int *fd, char **path)
 	ft_exe(av[3], path);
 }
 
-int main(int ac, char **av, char **path)
+int	main(int ac, char **av, char **path)
 {
-	int fd[2];
-	pid_t pid;
+	int		fd[2];
+	pid_t	pid;
 
-//verif des arguments;
-    printf("ceci est un test du clavier qui semble parfaitment fonctionner");
-    if (ac != 5)
+	if (ac != 5)
 		code_exit(0);
 	if (pipe(fd) == -1)
 		code_exit(1);
-// creating child process;
 	pid = fork();
 	if (pid == 0)
-		child_process(av,fd, path);
+		child_process(av, fd, path);
 	else
 	{
-		parent_process(av,fd, path);
+		parent_process(av, fd, path);
 	}
-    return 0;
+	return (9);
 }

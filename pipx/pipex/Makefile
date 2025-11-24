@@ -15,7 +15,8 @@ RM      =   rm -f
 
 # NE METS QUE TES FICHIERS .C ICI (pas de .a)
 SRCS    =   pipex.c \
-            utils.c
+            utils.c	\
+			pipex_utils_others.c\
 
 OBJS    =   $(SRCS:.c=.o)
 
