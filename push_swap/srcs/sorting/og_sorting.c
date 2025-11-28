@@ -31,11 +31,11 @@ void	sort_bilay(t_stack **a, t_stack **b)
 	int	len_of_a;
 
 	len_of_a = stack_len(*a);
-	// push the 2 first element of a into a
+	// push the 2 first element of a into b
 	if (len_of_a-- > 3 && !stack_is_sorted(*a))
-		pb(b, a, 0);
+		pb(a, b, 0);
 	if (len_of_a-- > 3 && !stack_is_sorted(*a))
-		pb(b, a, 0);
+		pb(a, b, 0);
 	while (len_of_a-- > 3 && !stack_is_sorted(*a))
 	{
 		info_a(*a, *b);

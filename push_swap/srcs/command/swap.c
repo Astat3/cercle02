@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 22:04:02 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/27 19:06:55 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/11/28 16:52:18 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	swap_func(t_stack **stack)
 	first->prev = second;
 	second->prev = NULL;
 	*stack = second;
-	
 }
 void	sa(t_stack **a, int bool)
 {
