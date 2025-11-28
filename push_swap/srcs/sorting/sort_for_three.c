@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 14:06:22 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/26 14:28:41 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/11/27 20:26:00 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	sort_for_three(t_stack **stack)
 {
 	t_stack	*max_node;
 
+    if (!stack || !(*stack))
+        return ;
 	max_node = max(*stack);
 	if (max_node == *stack)
 		ra(stack, 0);

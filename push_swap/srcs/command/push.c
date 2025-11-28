@@ -6,14 +6,14 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 22:03:37 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/27 19:04:32 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/11/28 15:50:40 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "push_swap.h"
 
-static void    push_func(t_stack **dst, t_stack **src)
+static void    push_func(t_stack **dst, t_stack **src)//
 {
 	t_stack *pushed_node;
 
@@ -22,7 +22,7 @@ static void    push_func(t_stack **dst, t_stack **src)
 	pushed_node = *src;
 	*src = (*src)->next;
 	if(*src)
-		(*src)->next = NULL;
+		(*src)->prev = NULL;
 	pushed_node->prev = NULL;
 	if (!*dst) // stack is empty
 	{

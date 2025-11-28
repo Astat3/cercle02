@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 00:35:20 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/27 01:38:43 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/11/28 16:00:51 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 t_stack *min(t_stack *stack)
 {
 	t_stack *min_node;
-	long	min; 
+	long	min;
 
+    if (!stack)
+        return (NULL);
+    min_node = stack;
 	min = LONG_MAX;
 	while (stack)
 	{

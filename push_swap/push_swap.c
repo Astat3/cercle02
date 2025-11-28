@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 23:39:47 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/27 19:16:33 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/11/27 20:25:09 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ int main(int ac, char **av)
 		return 1; //error
 	else if (ac == 2) // if string is sent
 		av = ft_split(av[1], ' '); // split function sans static ATTENTION
+            if (!av)
+                return (1);
 	else
 		av++;
 	/*how we are not missing the av[0]*/
 	create_stack_a(&a, av);
-	if (!stack_is_sorted(a)) // 0 -> is not sorted. | donc 
+	if (!stack_is_sorted(a)) // 0 -> is not sorted. | if a == NULL -> stack_is return 
 	{
 		if(stack_len(a) == 2)
 			sa(&a, 0);

@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 17:38:36 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/25 19:47:55 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/11/28 16:26:44 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ void	append_node(t_stack **stack, int n)
 	new_node = malloc(sizeof(t_stack));
 	if (!new_node)
 		return ;
-	new_node->next = NULL; 
+	new_node->next = NULL;
+    new_node->prev = NULL;
 	new_node->value = n;
 	if (*stack == NULL)
-		new_node = *stack;
+        *stack = new_node;
 	else
 	{
 		last_node = get_last(*stack);
 		last_node->next = new_node;
 		new_node->prev = last_node;
 	}
-	
 }
 

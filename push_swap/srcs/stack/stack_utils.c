@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 18:03:32 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/25 23:12:12 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/11/27 20:24:33 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 int	stack_is_sorted(t_stack *stack)
 {
 	if (!stack)
-		return 0;
-	while (stack)
+		return 2;
+	while (stack->next)
 	{
 		if (stack->value > stack->next->value)
 			return (0);

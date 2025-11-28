@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 20:40:52 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/27 19:15:39 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/11/28 16:14:45 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void how_much(t_stack *a, t_stack *b)
 		if (a->target->median_sup)
 			a->push_price += a->target->index;
 		else
-			a->push_price = (len_b) - (a->target->index);
+			a->push_price += (len_b) - (a->target->index);
 		a = a->next;
 	}
 }
