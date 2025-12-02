@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
+/*   By: agallot <agallot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 22:30:59 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/27 19:05:08 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/11/30 17:18:35 by agallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 static void	rr_func(t_stack **stack)
 {
-	t_stack *first;
-	t_stack *last;
+	t_stack	*first;
+	t_stack	*last;
+
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
-
-	first = *stack; 
+	first = *stack;
 	last = get_last(*stack);
 	last->prev->next = NULL;
 	last->next = first;
@@ -34,6 +34,7 @@ void	rra(t_stack **a, int bool)
 	if (bool == 0)
 		putstr_fd("rra\n", STDOUT_FILENO);
 }
+
 void	rrb(t_stack **b, int bool)
 {
 	rr_func(b);

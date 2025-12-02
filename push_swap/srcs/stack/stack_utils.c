@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
+/*   By: agallot <agallot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 18:03:32 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/27 20:24:33 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/11/30 17:17:16 by agallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 int	stack_is_sorted(t_stack *stack)
 {
 	if (!stack)
-		return 2;
+		return (2);
 	while (stack->next)
 	{
 		if (stack->value > stack->next->value)
@@ -26,8 +27,8 @@ int	stack_is_sorted(t_stack *stack)
 
 int	stack_len(t_stack *stack)
 {
-	int count;
-	
+	int	count;
+
 	if (!stack)
 		return (0);
 	count = 0;
@@ -39,12 +40,12 @@ int	stack_len(t_stack *stack)
 	return (count);
 }
 
-t_stack *max(t_stack *stack)
+t_stack	*max(t_stack *stack)
 {
 	long	max;
-	t_stack *res;
-	
-	if(!stack)
+	t_stack	*res;
+
+	if (!stack)
 		return (NULL);
 	res = stack;
 	max = stack->value;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   og_sorting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
+/*   By: agallot <agallot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 20:19:54 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/28 15:59:27 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/11/30 17:11:18 by agallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	min_on_top(t_stack **a)
 {
-	t_stack *min_node;
+	t_stack	*min_node;
 
 	min_node = min(*a);
 	while (*a != min_node)
@@ -31,7 +31,6 @@ void	sort_bilay(t_stack **a, t_stack **b)
 	int	len_of_a;
 
 	len_of_a = stack_len(*a);
-	// push the 2 first element of a into b
 	if (len_of_a-- > 3 && !stack_is_sorted(*a))
 		pb(a, b, 0);
 	if (len_of_a-- > 3 && !stack_is_sorted(*a))
@@ -47,6 +46,6 @@ void	sort_bilay(t_stack **a, t_stack **b)
 		info_b(*a, *b);
 		from_b_to_a(a, b);
 	}
-	index_in_stack(*a); //permet de refresh les value de la liste
+	index_in_stack(*a);
 	min_on_top(a);
 }

@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
+/*   By: agallot <agallot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 22:04:02 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/28 16:52:18 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/11/30 17:18:12 by agallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "push_swap.h"
 
@@ -30,6 +29,7 @@ static void	swap_func(t_stack **stack)
 	second->prev = NULL;
 	*stack = second;
 }
+
 void	sa(t_stack **a, int bool)
 {
 	swap_func(a);
