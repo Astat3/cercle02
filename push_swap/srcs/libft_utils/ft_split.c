@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 17:13:53 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/12/06 19:48:14 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/12/06 20:09:02 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,30 @@ static int	count_words(char const *str, char sep)
 {
 	int	i;
 	int	token;
+	int	is_token;
 
 	i = 0;
 	token = 0;
+	is_token = 0;
 	while (str[i])
 	{
 		while (str[i] && ft_is_sep(str[i], sep))
 			i++;
-		if (str[i])
-			token++;
-		while (str[i] && !ft_is_sep(str[i], sep))
+		is_token = 0;
+		while (str[i] && !(ft_is_sep(str[i], sep)))
+		{
+			if (is_token == 0)
+			{
+				is_token = 1;
+				token++;
+			}
 			i++;
+		}
 	}
 	return (token);
 }
 
-// RENAMED to avoid conflict with standard ft_strdup
-static char	*get_next_word(char const *src, int start, int end)
+static char	*ft_strdup(char const *src, int start, int end)
 {
 	char	*arr;
 	int		i;
@@ -57,32 +64,18 @@ static char	*get_next_word(char const *src, int start, int end)
 	return (arr);
 }
 
-// NEW: Helper to clean up memory if malloc fails mid-way
-static void	*ft_free_tab(char **tab, int row)
-{
-	int	i;
-
-	i = 0;
-	while (i < row)
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-	return (NULL);
-}
-
 char	**ft_split(char const *s, char c)
 {
 	int		i;
+	char	**tab;
 	int		row;
 	int		start;
-	char	**tab;
 
 	i = 0;
 	row = 0;
-	if (!s)
-		return (NULL);
+	start = 0;
+    if(!s || !*s)
+        return (NULL);
 	tab = malloc(((count_words(s, c) + 1) * sizeof(char *)));
 	if (tab == NULL)
 		return (NULL);
@@ -91,15 +84,10 @@ char	**ft_split(char const *s, char c)
 		while (s[i] && ft_is_sep(s[i], c))
 			i++;
 		start = i;
-		while (s[i] && !ft_is_sep(s[i], c))
+		while (s[i] && !(ft_is_sep(s[i], c)))
 			i++;
 		if (start < i)
-		{
-			tab[row] = get_next_word(s, start, i);
-			if (tab[row] == NULL) 
-				return (ft_free_tab(tab, row));
-			row++;
-		}
+			tab[row++] = ft_strdup(s, start, i);
 	}
 	tab[row] = NULL;
 	return (tab);
