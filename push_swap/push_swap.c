@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agallot <agallot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 23:39:47 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/30 16:49:29 by agallot          ###   ########.fr       */
+/*   Updated: 2025/12/06 19:44:15 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
 		return (1);
 	else if (ac == 2)
 		av = ft_split(av[1], ' ');
-	if (!av)
+	else if (!av)
 		return (1);
 	else
 		av++;

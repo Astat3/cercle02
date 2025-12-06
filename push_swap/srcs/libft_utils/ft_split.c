@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agallot <agallot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 17:13:53 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/30 17:17:37 by agallot          ###   ########.fr       */
+/*   Updated: 2025/12/06 19:34:23 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,23 @@ static int	count_words(char const *str, char sep)
 {
 	int	i;
 	int	token;
-	int	is_token;
 
 	i = 0;
 	token = 0;
-	is_token = 0;
 	while (str[i])
 	{
 		while (str[i] && ft_is_sep(str[i], sep))
 			i++;
-		is_token = 0;
-		while (str[i] && !(ft_is_sep(str[i], sep)))
-		{
-			if (is_token == 0)
-			{
-				is_token = 1;
-				token++;
-			}
+		if (str[i])
+			token++;
+		while (str[i] && !ft_is_sep(str[i], sep))
 			i++;
-		}
 	}
 	return (token);
 }
 
-static char	*ft_strdup(char const *src, int start, int end)
+// RENAMED to avoid conflict with standard ft_strdup
+static char	*get_next_word(char const *src, int start, int end)
 {
 	char	*arr;
 	int		i;
@@ -64,17 +57,31 @@ static char	*ft_strdup(char const *src, int start, int end)
 	return (arr);
 }
 
+// NEW: Helper to clean up memory if malloc fails mid-way
+static void	*ft_free_tab(char **tab, int row)
+{
+	int	i;
+
+	i = 0;
+	while (i < row)
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+	return (NULL);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	int		i;
-	char	**tab;
 	int		row;
 	int		start;
+	char	**tab;
 
 	i = 0;
 	row = 0;
-	start = 0;
-	if (!s || !*s)
+	if (!s) // Removed !*s so we return a valid empty array for empty strings
 		return (NULL);
 	tab = malloc(((count_words(s, c) + 1) * sizeof(char *)));
 	if (tab == NULL)
@@ -84,10 +91,15 @@ char	**ft_split(char const *s, char c)
 		while (s[i] && ft_is_sep(s[i], c))
 			i++;
 		start = i;
-		while (s[i] && !(ft_is_sep(s[i], c)))
+		while (s[i] && !ft_is_sep(s[i], c))
 			i++;
 		if (start < i)
-			tab[row++] = ft_strdup(s, start, i);
+		{
+			tab[row] = get_next_word(s, start, i);
+			if (tab[row] == NULL) // Check if word allocation failed
+				return (ft_free_tab(tab, row));
+			row++;
+		}
 	}
 	tab[row] = NULL;
 	return (tab);
