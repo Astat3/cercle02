@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 17:13:53 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/12/06 19:34:23 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/12/06 19:48:14 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	**ft_split(char const *s, char c)
 
 	i = 0;
 	row = 0;
-	if (!s) // Removed !*s so we return a valid empty array for empty strings
+	if (!s)
 		return (NULL);
 	tab = malloc(((count_words(s, c) + 1) * sizeof(char *)));
 	if (tab == NULL)
@@ -96,7 +96,7 @@ char	**ft_split(char const *s, char c)
 		if (start < i)
 		{
 			tab[row] = get_next_word(s, start, i);
-			if (tab[row] == NULL) // Check if word allocation failed
+			if (tab[row] == NULL) 
 				return (ft_free_tab(tab, row));
 			row++;
 		}
