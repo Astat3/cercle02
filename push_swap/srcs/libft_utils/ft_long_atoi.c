@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_long_atoi.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agallot <agallot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 19:05:42 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/30 17:18:00 by agallot          ###   ########.fr       */
+/*   Updated: 2025/12/07 18:55:44 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 long	ft_long_atoi(const char *str)
 {
 	size_t	i;
-	size_t	sign;
+	long	sign;
 	long	res;
 
 	i = 0;
@@ -26,9 +26,7 @@ long	ft_long_atoi(const char *str)
 	if ((str[i] == '+') || (str[i] == '-'))
 	{
 		if (str[i] == '-')
-		{
-			sign *= -1;
-		}
+			sign = -1;
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')

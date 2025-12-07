@@ -6,14 +6,14 @@
 #    By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/27 19:36:10 by adamgallot        #+#    #+#              #
-#    Updated: 2025/11/27 19:36:11 by adamgallot       ###   ########.fr        #
+#    Updated: 2025/12/07 17:45:02 by adamgallot       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME        = push_swap
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -I.
+CFLAGS      = -Wall -Wextra -Werror -I. -g3
 
 # Ici, on liste explicitement chaque fichier avec son chemin complet
 # C'est "moche et long", mais ça marche à tous les coups.

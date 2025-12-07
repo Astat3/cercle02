@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 17:13:53 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/12/06 20:09:02 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/12/07 19:23:54 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	**ft_split(char const *s, char c)
 	row = 0;
 	start = 0;
     if(!s || !*s)
-        return (NULL);
+        return (NULL);        
 	tab = malloc(((count_words(s, c) + 1) * sizeof(char *)));
 	if (tab == NULL)
 		return (NULL);
@@ -89,6 +89,5 @@ char	**ft_split(char const *s, char c)
 		if (start < i)
 			tab[row++] = ft_strdup(s, start, i);
 	}
-	tab[row] = NULL;
-	return (tab);
+	return (tab[row] = NULL,tab);
 }
