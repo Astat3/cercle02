@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 18:38:50 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/12/07 19:10:59 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/12/07 19:48:07 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,29 @@ void	error_mess_free(t_stack **a)
 	exit(1);
 }
 
+static int	is_empty_or_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str || !str[0])
+		return (1);
+	while (str[i])
+	{
+		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 static int	check_error(char *str_n)
 {
-{
+	if (is_empty_or_space(str_n))
+		return (1);
 	if (!(*str_n == '+'
 			|| *str_n == '-'
-			|| (*str_n >= '0' && *str_n <= '9'))) 
+			|| (*str_n >= '0' && *str_n <= '9')))
 		return (1);
 	if ((*str_n == '+'
 			|| *str_n == '-')
@@ -55,7 +71,6 @@ static int	check_error(char *str_n)
 	}
 	return (0);
 }
-}
 
 void	create_stack_a(t_stack **a, char **av)
 {
@@ -63,6 +78,8 @@ void	create_stack_a(t_stack **a, char **av)
 	long	n;
 
 	i = 0;
+	if (!av || !av[0])
+		error_mess_free(a);
 	while (av[i])
 	{
 		if (check_error(av[i]))
