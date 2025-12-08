@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 23:39:47 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/12/07 19:48:07 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/12/08 17:31:57 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,22 @@ static void	sort_stack(t_stack **a, t_stack **b)
 		sort_bilay(a, b);
 }
 
+static int	check_num(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return 0;
+	while (s[i])
+	{
+		if ((s[i] <= '0' && s[i] >='9') || s[i] != '+' || s[i]!= '-')
+			return 0;
+		i++;
+	}
+	return (1);
+}
+
 static char	**parse_args(int ac, char **av)
 {
 	if (ac == 1)
@@ -46,8 +62,11 @@ static char	**parse_args(int ac, char **av)
 	if (ac == 2)
 	{
 		av = ft_split(av[1], ' ');
-		if (!av)
-			exit((write(STDERR_FILENO, "Error\n", 6), 1));
+		if (!check_num(av[1]))
+		{
+			free_split(av);	
+			exit((write(STDERR_FILENO, "Error\n", 6), 1));	
+		}
 		return (av);
 	}
 	return (av + 1);
