@@ -19,7 +19,7 @@ UNAME_S		:=	$(shell uname -s)
 # ============================================================================ #
 
 ifeq ($(UNAME_S), Linux)
-	MLX_PATH	=	minilibx-linux
+	MLX_PATH	=	mlx
 	MLX_NAME	=	libmlx.a
 	MLX_FLAGS	=	-L$(MLX_PATH) -lmlx -lXext -lX11 -lm -lz
 else

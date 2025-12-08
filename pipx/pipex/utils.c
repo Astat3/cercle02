@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agallot <agallot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 11:28:37 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/24 12:04:16 by agallot          ###   ########.fr       */
+/*   Updated: 2025/12/08 19:18:52 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,20 @@ void	code_exit(int nbr)
 {
 	if (nbr == 0)
 	{
-		perror("Wrong argument number !\n");
+		ft_putstr_fd("Wrong argument number !\n", STDERR_FILENO);
+		exit(EXIT_FAILURE);
 	}
 	else if (nbr == 1)
 	{
-		perror("Something went wrong with pid");
+		ft_putstr_fd("Something went wrong with pid", STDERR_FILENO);
+		exit(EXIT_FAILURE);
 	}
 	else if (nbr == 2)
 	{
-		perror("Get files Error");
+		ft_putstr_fd("Get files Error", STDERR_FILENO);
+		exit(EXIT_FAILURE);
 	}
-	exit(0);
+	exit(EXIT_FAILURE);
 }
 
 void	full_free(char **tab)
@@ -87,17 +90,22 @@ char	*find_var(char *cmd, char **path)
 	char	*line;
 	char	*var;
 	char	**t_cmd;
+	char	*path_str;
 
-	l_path = ft_split(get_path(path, "PATH"), ':');
+	path_str = get_path(path, "PATH");
+	l_path = ft_split(path_str, ':');
+	free(path_str);
 	line = NULL;
 	var = NULL;
 	t_cmd = ft_split(cmd, ' ');
 	if (access(cmd, F_OK | X_OK) == 0)
-		return (cmd);
+	{
+		full_free(l_path);
+		full_free(t_cmd);
+		return (ft_strdup(cmd));
+	}
 	var = find_check_var(l_path, line, var, t_cmd);
-	if (var != NULL)
-		return (var);
 	full_free(l_path);
 	full_free(t_cmd);
-	return (NULL);
+	return (var);
 }

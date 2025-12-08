@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agallot <agallot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 13:47:44 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/11/24 11:33:54 by agallot          ###   ########.fr       */
+/*   Updated: 2025/12/08 19:09:33 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,19 @@ void	ft_exe(char *cmd, char **path)
 	var = find_var(cmd, path);
 	if (var == NULL)
 	{
-		perror("Command not found");
+		ft_putstr_fd("Command not found", STDERR_FILENO);
 		full_free(t_cmd);
-		exit(127);
+		exit(127); // command no found
 	}
 	if (execve(var, t_cmd, path) == -1)
 	{
-		perror("Execve failed");
+		ft_putstr_fd("Execve failed", STDERR_FILENO);
 		full_free(t_cmd);
 		free(var);
 		exit(1);
 	}
+	full_free(t_cmd);
+	free(var);
 }	
 
 int	get_file(char *file_name, int instruction)
@@ -103,7 +105,8 @@ int	main(int ac, char **av, char **path)
 		child_process(av, fd, path);
 	else
 	{
+		waitpid(pid, NULL, 0);
 		parent_process(av, fd, path);
 	}
-	return (9);
+	return (0);
 }

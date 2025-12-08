@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_utils_others.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agallot <agallot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 12:03:49 by agallot           #+#    #+#             */
-/*   Updated: 2025/11/24 12:04:21 by agallot          ###   ########.fr       */
+/*   Updated: 2025/12/08 19:15:18 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ char	*find_check_var(char **l_path, char *line, char *var, char **t_cmd)
 		free(line);
 		if (access(var, F_OK | X_OK) == 0)
 		{
-			full_free(l_path);
-			full_free(t_cmd);
 			return (var);
 		}
 		free(var);

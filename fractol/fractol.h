@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 20:19:01 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/12/04 18:59:02 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/12/08 14:11:33 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include <unistd.h>
-//#include <X11/X.h>
-//#include <X11/keysym.h>
+// #include <X11/X.h>
+// #include <X11/keysym.h>
 
 # define WIDTH 800
 # define HEIGHT 800
@@ -98,7 +98,7 @@ typedef struct s_fractal
 }t_fractal;
 
 /*Prototypes*/
-void	fractol_init(t_fractal *fractal);
+void	fractol_init(t_fractal *fractal);mak
 void	fractal_render(t_fractal *fractal);
 
 /*MATHS*/
@@ -106,6 +106,7 @@ double      scale(double unscaledNum, double minAllowed, double maxAllowed, doub
 t_complex   sum_vectors(t_complex a, t_complex b);
 t_complex product_vector(t_complex a);
 double	atodouble(char *string);
+
 /*HANDLING EVENTS*/
 int	keyhandler(int keysym, t_fractal *fractal);
 int	close_handler(t_fractal *fractal);
