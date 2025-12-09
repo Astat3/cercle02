@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:21:33 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/12/08 14:12:53 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/12/09 19:51:30 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	events_init(t_fractal *fractal)
 	mlx_hook(fractal->mlx_window,KeyPress, KeyPressMask, keyhandler, fractal);// keyboard
 	mlx_hook(fractal->mlx_window,ButtonPress, ButtonPressMask, mouse_hanlde, fractal);//mouse
 	mlx_hook(fractal->mlx_window,DestroyNotify, StructureNotifyMask, close_handler, fractal);//destroy notify
-    mlx_hook(fractal->mlx_window, MotionNotify, juliatrack, fractal) 
+    mlx_hook(fractal->mlx_window, MotionNotify, PointerMotionMask,juliatrack, fractal) 
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 20:19:01 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/12/08 14:11:33 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/12/09 19:57:19 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,9 @@ typedef struct s_fractal
 }t_fractal;
 
 /*Prototypes*/
-void	fractol_init(t_fractal *fractal);mak
+void	fractol_init(t_fractal *fractal);
 void	fractal_render(t_fractal *fractal);
+int	trackjulia(int x, int y, t_fractal *fractal);
 
 /*MATHS*/
 double      scale(double unscaledNum, double minAllowed, double maxAllowed, double min, double max);

@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 17:40:48 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/12/04 18:31:59 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/12/09 19:56:52 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,17 @@ int	mouse_handler(int button, int x, int y, t_fractal *fractal)
 		fractal->zoom *= 0.95; 
 	else if (button == Button4)
 		fractal->zoom *= 1.05;
+	fractal_render(fractal);
+	return (0);
+}
+
+int	trackjulia(int x, int y, t_fractal *fractal)
+{
+	if (ft_strncmp(fractal->name, "julia", 5))
+	{
+		fractal->julia_x = (scale(x, -2, +2, 0, WIDTH) * fractal->zoom) + fractal->shift_x;
+		fractal->julia_y = (scale(y, +2, -2, 0, HEIGHT) * fractal->zoom) + fractal->shift_x;
+	}
 	fractal_render(fractal);
 	return (0);
 }
