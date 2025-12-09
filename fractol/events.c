@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
+/*   By: agallot <agallot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 17:40:48 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/12/09 19:56:52 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/12/09 21:43:25 by agallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	close_handler(t_fractal *fractal)
 // GET EVERY KEY PRESSED
 int	keyhandler(int keysym, t_fractal *fractal)
 {
-	if (keysym == XK_ESCAPE)
+	if (keysym == XK_Escape)
 		close_handler(fractal);
 	else if (keysym == XK_Left)
 		fractal->shift_x += (0.5 * fractal->zoom);
@@ -46,6 +46,8 @@ int	keyhandler(int keysym, t_fractal *fractal)
 
 int	mouse_handler(int button, int x, int y, t_fractal *fractal)
 {
+	x = 0;
+	y = 0;
 	if (button == Button5)
 		fractal->zoom *= 0.95; 
 	else if (button == Button4)
@@ -59,7 +61,7 @@ int	trackjulia(int x, int y, t_fractal *fractal)
 	if (ft_strncmp(fractal->name, "julia", 5))
 	{
 		fractal->julia_x = (scale(x, -2, +2, 0, WIDTH) * fractal->zoom) + fractal->shift_x;
-		fractal->julia_y = (scale(y, +2, -2, 0, HEIGHT) * fractal->zoom) + fractal->shift_x;
+		fractal->julia_y = (scale(y, +2, -2, 0, HEIGHT) * fractal->zoom) + fractal->shift_y;
 	}
 	fractal_render(fractal);
 	return (0);

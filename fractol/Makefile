@@ -5,7 +5,7 @@
 NAME		=	fractol
 
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -O3
+CFLAGS		=	-Wall -Wextra -Werror -O3 -g
 
 # 1. LIBFT CONFIGURATION
 LIBFT_PATH	=	Libft
@@ -38,6 +38,10 @@ INCLUDES	=	-I ./includes -I $(MLX_PATH) -I $(LIBFT_PATH)
 # ============================================================================ #
 
 SRCS		=	main.c \
+				events.c\
+				init.c\
+				fractal_render.c\
+				utils_for_maths.c\
 				# Add other files here
 
 OBJS		=	$(SRCS:.c=.o)

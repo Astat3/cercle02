@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_for_maths.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
+/*   By: agallot <agallot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 14:39:53 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/12/04 18:56:59 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/12/09 23:32:51 by agallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ double	atodouble(char *string)
 	if (*string == '.')
 		++string;
 	while (*string)
-		power /= 10;
-		fract_part = fract_part + (*string++ - 48) * power;
+		(power /= 10,fract_part = fract_part + (*string++ - 48) * power);
 	return ((fract_part + inte_part) * sign);
 }
 

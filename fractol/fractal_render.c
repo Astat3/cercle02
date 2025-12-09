@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractal_render.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
+/*   By: agallot <agallot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 14:31:41 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/12/04 19:09:18 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/12/09 23:43:25 by agallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static void	is_pixel(int x, int y, t_fractal *fractal)
 	int			i;
 	int			color;
 	
-	z.x = (fractal->zoom * scale(x, -2, +2, 0, WIDTH)) + fractal->shift_x;
-	z.y = (fractal->zoom * scale(y, +2, -2, 0, HEIGHT)) + fractal->shift_y;
+	z.x = (scale(x, -2, +2, 0, WIDTH) * fractal->zoom ) + fractal->shift_x;
+	z.y = (scale(y, +2, -2, 0, HEIGHT) * fractal->zoom ) + fractal->shift_y;
 	i = 0;
 	
 	juliadelbrot(&z, &c, fractal);
@@ -62,7 +62,7 @@ static void	is_pixel(int x, int y, t_fractal *fractal)
 		i++;
 	}
 	// We are in madelbrot
-	pixel_put(x, y , &fractal->img, PSYCHEDELIC_PURPLE);
+	pixel_put(x, y , &fractal->img, WHITE);
 }
 
 void	fractal_render(t_fractal *fractal)
@@ -70,9 +70,10 @@ void	fractal_render(t_fractal *fractal)
 	int	y; 
 	int x;
 	
-	y = -1; 
+	y = -1;
 	while (++y < HEIGHT)
 	{
+		x = -1;
 		while (++x < WIDTH)
 		{
 			is_pixel(x, y, fractal);
