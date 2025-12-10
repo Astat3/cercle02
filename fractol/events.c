@@ -6,7 +6,7 @@
 /*   By: agallot <agallot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 17:40:48 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/12/09 21:43:25 by agallot          ###   ########.fr       */
+/*   Updated: 2025/12/10 00:52:50 by agallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	close_handler(t_fractal *fractal)
 	mlx_destroy_window(fractal->mlx_connexion, fractal->mlx_window);
 	mlx_destroy_display(fractal->mlx_connexion);
 	free(fractal->mlx_connexion);
-	exit(EXIT_FAILURE);	
+	exit(EXIT_FAILURE);
 }
 
 //keypress
@@ -41,7 +41,6 @@ int	keyhandler(int keysym, t_fractal *fractal)
 		fractal->interation -= 10;
 	fractal_render(fractal);
 	return (0);
-
 }
 
 int	mouse_handler(int button, int x, int y, t_fractal *fractal)
@@ -49,7 +48,7 @@ int	mouse_handler(int button, int x, int y, t_fractal *fractal)
 	x = 0;
 	y = 0;
 	if (button == Button5)
-		fractal->zoom *= 0.95; 
+		fractal->zoom *= 0.95;
 	else if (button == Button4)
 		fractal->zoom *= 1.05;
 	fractal_render(fractal);
@@ -60,8 +59,10 @@ int	trackjulia(int x, int y, t_fractal *fractal)
 {
 	if (ft_strncmp(fractal->name, "julia", 5))
 	{
-		fractal->julia_x = (scale(x, -2, +2, 0, WIDTH) * fractal->zoom) + fractal->shift_x;
-		fractal->julia_y = (scale(y, +2, -2, 0, HEIGHT) * fractal->zoom) + fractal->shift_y;
+		fractal->julia_x = (scale(x, -2, +2, WIDTH) * fractal->zoom)
+			+ fractal->shift_x;
+		fractal->julia_y = (scale(y, +2, -2, HEIGHT) * fractal->zoom)
+			+ fractal->shift_y;
 	}
 	fractal_render(fractal);
 	return (0);

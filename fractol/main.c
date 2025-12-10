@@ -6,7 +6,7 @@
 /*   By: agallot <agallot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 20:18:41 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/12/10 00:13:57 by agallot          ###   ########.fr       */
+/*   Updated: 2025/12/10 00:20:12 by agallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int ac, char **av)
 {
 	t_fractal	fractal;
 
-	sum = 0;
 	if ((ac == 2 && !ft_strncmp(av[1], "mandelbrot", 10)) || (ac == 4
 			&& !ft_strncmp(av[1], "julia", 5)))
 	{
