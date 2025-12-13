@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
+/*   By: agallot <agallot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 23:39:47 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/12/08 17:31:57 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/12/13 17:47:25 by agallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	free_split(char **str)
+void	free_split(char **str)
 {
 	int	i;
 
@@ -43,11 +43,13 @@ static int	check_num(char *s)
 
 	i = 0;
 	if (!s)
-		return 0;
+		return (0);
 	while (s[i])
 	{
-		if ((s[i] <= '0' && s[i] >='9') || s[i] != '+' || s[i]!= '-')
-			return 0;
+		if ((s[i] < '0' && s[i] > '9') && (s[i] != '+' && s[i] != '-'))
+		{
+			return (0);
+		}
 		i++;
 	}
 	return (1);
@@ -58,16 +60,23 @@ static char	**parse_args(int ac, char **av)
 	if (ac == 1)
 		exit(1);
 	if (ac == 2 && !av[1][0])
+	{
 		exit((write(STDERR_FILENO, "Error\n", 6), 1));
+	}
 	if (ac == 2)
 	{
 		av = ft_split(av[1], ' ');
-		if (!check_num(av[1]))
+		if (!check_num(av[0]))
 		{
-			free_split(av);	
-			exit((write(STDERR_FILENO, "Error\n", 6), 1));	
+			free_split(av);
+			exit((write(STDERR_FILENO, "Error\n", 6), 1));
 		}
 		return (av);
+	}
+	if (!check_num(av[1]))
+	{
+		free_split(av);
+		exit((write(STDERR_FILENO, "Error\n", 6), 1));
 	}
 	return (av + 1);
 }

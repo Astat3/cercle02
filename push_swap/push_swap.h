@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
+/*   By: agallot <agallot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 22:51:00 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/12/07 19:22:40 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/12/13 17:03:31 by agallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ t_stack				*min(t_stack *stack);
 void				putstr_fd(char *s, int fd);
 char				**ft_split(char const *s, char c);
 long				ft_long_atoi(const char *str);
+void				free_split(char **str);
 
 /*command*/
 void				pa(t_stack **a, t_stack **b, int bool);

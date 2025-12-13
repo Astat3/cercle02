@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
+/*   By: agallot <agallot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 18:38:50 by adamgallot        #+#    #+#             */
-/*   Updated: 2025/12/07 19:48:07 by adamgallot       ###   ########.fr       */
+/*   Updated: 2025/12/13 17:06:07 by agallot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,18 @@ void	create_stack_a(t_stack **a, char **av)
 	while (av[i])
 	{
 		if (check_error(av[i]))
+		{
+			free_split(av);
 			error_mess_free(a);
+		}
 		n = ft_long_atoi(av[i]);
 		if (n < INT_MIN || n > INT_MAX)
+		{
+			free_split(av);
 			error_mess_free(a);
+		}
 		if (check_double(*a, (int)n))
-			error_mess_free(a);
+			(free_split(av), error_mess_free(a));
 		append_node(a, (int)n);
 		i++;
 	}
